@@ -11,7 +11,6 @@ export default class TireSoftStrategy implements TireSelector {
     validate(context: Context): boolean {
         const {wheater, humidity, temperature} = context;
         const car: Car = <Car>context.car
-        console.log(car)
         if(
             (wheater == WheaterType.SUNNY || WheaterType.CLOUDY) 
             && (humidity > 20 && humidity < 50) 

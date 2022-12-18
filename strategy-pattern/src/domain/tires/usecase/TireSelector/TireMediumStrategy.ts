@@ -1,8 +1,10 @@
+import { Service } from "typedi";
 import Car from "../../../context/entity/Car";
 import Context, { WheaterType } from "../../../context/entity/Context";
 import Tire, { TireType } from "../../entity/Tire";
-import TireSelector from "./TireSelector";
+import TireSelector, { TireFactoryToken } from "./TireSelectorFactory";
 
+@Service({ id: TireFactoryToken, multiple: true })
 export default class TireMediumnStrategy implements TireSelector {
     tire: Tire = new Tire(TireType.MEDIUM)
 

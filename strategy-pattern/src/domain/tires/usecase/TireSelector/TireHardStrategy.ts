@@ -1,9 +1,11 @@
+import { Service } from "typedi";
 import Car from "../../../context/entity/Car";
 import Context, { WheaterType } from "../../../context/entity/Context";
 import Tire, { TireType } from "../../entity/Tire";
-import TireSelector from "./TireSelector";
+import TireSelector, {TireFactoryToken} from "./TireSelectorFactory";
 
-export default class TireSoftStrategy implements TireSelector {
+@Service({ id: TireFactoryToken, multiple: true })
+export default class TireHardStrategy implements TireSelector {
     tire: Tire = new Tire(TireType.HARD)
 
     validate(context: Context): boolean {

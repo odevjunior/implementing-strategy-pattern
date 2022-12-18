@@ -1,1 +1,0 @@
-# implementing-strategy-pattern

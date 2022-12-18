@@ -1,10 +1,10 @@
 import Car from "./Car";
 
 export default class Context {
-    public wheater: WheaterType
-    public humidity: number
-    public temperature: number
-    public car: Car
+    wheater: WheaterType
+    humidity: number
+    temperature: number
+    car: Car
 
     constructor(wheater: WheaterType, humidity: number, temperature: number, car: Car) {
         this.wheater = wheater;

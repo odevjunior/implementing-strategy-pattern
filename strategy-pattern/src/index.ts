@@ -1,23 +1,36 @@
 import 'reflect-metadata';
-import express, { Express, Request, Response } from "express"
-import {Container} from 'typedi';
-import TireUsecase from "./domain/tires/usecase/TireUsecase";
-import Context from './domain/context/entity/Context';
+import express, { Express } from "express"
+import TireController from './application/entrypoint/TireController';
 
-const app: Express = express()
-const port = 3000
+export default class Main {
+    private __app: Express
+    private __port: number
+    private __controllers: any[] = []
 
-app.use(express.json()) 
+    constructor(app: Express, port: number) {
+        this.__app = app;
+        this.__port = port;
+    }
 
-app.get('/', (req: Request, res: Response) => {
-    res.send('Hello World!')
-})
+    get app(): Express {
+        return this.__app
+    }
 
-app.post('/select-tire', (req: Request, res: Response) => {
-    const context: Context = <Context>req.body.context
-    res.json(Container.get(TireUsecase).execute(context))
-})
+    addExtension(extension: any): Main {
+        this.__app.use(extension);
+        return this
+    }
 
-app.listen(port, () => {
-    console.log(`Example app listening on port ${port}`)
-})
+    addController(controller: any): Main {
+        this.__controllers.push(controller)
+        return this
+    }
+
+    start(message: string) {
+        this.__app.listen(this.__port, () => console.log(message))
+    }
+}
+
+const main = new Main(express(), 3000).addExtension(express.json())
+main.addController(new TireController(main.app))
+main.start("welcome to my app");

@@ -12,9 +12,9 @@ export default class TireHardStrategy implements TireSelector {
         const { wheater, humidity, temperature, car } = context;
         if (
             (wheater == WheaterType.SUNNY || WheaterType.CLOUDY)
-            && (humidity > 50 && humidity < 80)
-            && (temperature > 35 && temperature < 50)
-            && (car.getPosition() > 16 && car.getPosition() < 20)
+            && (humidity >= 50 && humidity < 80)
+            && (temperature >= 35 && temperature < 50)
+            && (car.position >= 16 && car.position < 20)
         ) {
             return true;
         }
@@ -23,7 +23,7 @@ export default class TireHardStrategy implements TireSelector {
 
     installTire(context: Context): Car {
         let { car } = context;
-        car.setTire(this.tire);
+        car.tire = this.tire;
         return car;
     }
 

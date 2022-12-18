@@ -9,12 +9,14 @@ export default class TireSoftStrategy implements TireSelector {
     tire: Tire = new Tire(TireType.SOFT)
 
     validate(context: Context): boolean {
-        const {wheater, humidity, temperature, car} = context;
+        const {wheater, humidity, temperature} = context;
+        const car: Car = <Car>context.car
+        console.log(car)
         if(
             (wheater == WheaterType.SUNNY || WheaterType.CLOUDY) 
             && (humidity > 20 && humidity < 50) 
             && temperature < 35 
-            && car.getPosition() < 8
+            && car.position < 8
         ) {
             return true;
         }
@@ -23,7 +25,7 @@ export default class TireSoftStrategy implements TireSelector {
 
     installTire(context: Context): Car {
         let {car} = context;
-        car.setTire(this.tire);
+        car.tire = this.tire;
         return car;
     }
 

@@ -14,7 +14,7 @@ app.get('/', (req: Request, res: Response) => {
 })
 
 app.post('/select-tire', (req: Request, res: Response) => {
-    const context: Context = <Context>req.body
+    const context: Context = <Context>req.body.context
     res.json(Container.get(TireUsecase).execute(context))
 })
 

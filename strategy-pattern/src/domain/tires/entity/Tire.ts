@@ -7,5 +7,9 @@ export default class Tire {
 }
 
 export enum TireType {
-    SOFT, MEDIUM, HARD, INTERMEDIATED, WET
+    SOFT="soft",
+    MEDIUM="medium", 
+    HARD="hard", 
+    INTERMEDIATED="intermediated", 
+    WET="wet"
 }

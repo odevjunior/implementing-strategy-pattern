@@ -1,27 +1,27 @@
 import Tire from "../../tires/entity/Tire"
 
 export default class Car {
-    private scuderia: string
-    private tire: Tire
-    private driver: string
-    private position: number
+    private __scuderia: string
+    private __tire: Tire
+    private __driver: string
+    private __position: number
 
     constructor(scuderia: string, tire: Tire, driver: string, position: number) {
-        this.scuderia = scuderia;
-        this.driver = driver;
-        this.tire = tire;
-        this.position = position;
+        this.__scuderia = scuderia;
+        this.__driver = driver;
+        this.__tire = tire;
+        this.__position = position;
     }
 
-    getTire(): Tire {
-        return this.tire
+    public get tire(): Tire {
+        return this.__tire
     }
 
-    setTire(tire: Tire): void {
-        this.tire = tire;
+    public set tire(tire: Tire) {
+        this.__tire = tire;
     }
 
-    getPosition(): number {
+    public get position(): number {
         return this.position
     }
 }

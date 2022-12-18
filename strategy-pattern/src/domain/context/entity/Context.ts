@@ -12,8 +12,12 @@ export default class Context {
         this.humidity = humidity;
         this.temperature = temperature;
     }
+
+    getCar(): Car {
+        return this.car
+    }
 }
 
 export enum WheaterType {
-    SUNNY, CLOUDY, RAINY
+    SUNNY="sunny", CLOUDY="cloudy", RAINY="rainy"
 }

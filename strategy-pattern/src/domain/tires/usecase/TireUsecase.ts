@@ -16,8 +16,7 @@ export default class TireUsecase {
         this.factories = Container.getMany(TireFactoryToken)
     }
 
-    execute(context: Context):Car {
-        console.log(context.car)
+    execute(context: any):Car {
         return this.factories.filter(it => it.validate(context)).map(it => it.installTire(context))[0]
     }
 }   
